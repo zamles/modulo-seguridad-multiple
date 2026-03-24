@@ -31,19 +31,5 @@ Este módulo proporciona una capa de seguridad reutilizable para aplicaciones .N
 - 🔄 Facilidad para migrar entre proveedores de autenticación
 - 📊 Reportes de seguridad para cumplimiento normativo
 
----
 
-## 🏗️ Arquitectura del Sistema
 
-```mermaid
-graph TD
-    User[Usuario] -->Auth{Proveedor de Autenticación}    
-    Auth -->|Local| LocalDB[(SQL Server - Users)]       
-    
-    Auth --> Policy[Validación de Políticas]
-    Policy --> Resource[Recurso Protegido]
-    
-    Auth --> Audit[Registro de Auditoría]
-    
-    style Auth fill:#239120,color:white
-    style Policy fill:#512BD4,color:white
