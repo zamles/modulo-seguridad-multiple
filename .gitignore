@@ -1,0 +1,44 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Power BI
+*.pbix.user
+*.pbit
+
+# SQL Server
+*.mdf
+*.ldf
+*.ndf
+
+# SSIS
+*.ispac
+*.project
+*.package
+
+# Secrets
+appsettings.local.json
+*.pfx
+*.key
+connectionstrings.config
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
