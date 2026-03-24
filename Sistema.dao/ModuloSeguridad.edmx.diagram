@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="88a6c0026fa34638abfd9d01c6aa71e8" Name="Diagram1">
+        <EntityTypeShape EntityType="SistemaModuloModel.Permiso" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaModuloModel.PemisoRolSistema" Width="1.5" PointX="5.625" PointY="5.625" />
+        <EntityTypeShape EntityType="SistemaModuloModel.RolSistema" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="SistemaModuloModel.Usuario" Width="1.5" PointX="0.5" PointY="5.25" />
+        <EntityTypeShape EntityType="SistemaModuloModel.UsuarioSistema" Width="1.5" PointX="3.125" PointY="5.75" />
+        <AssociationConnector Association="SistemaModuloModel.FK__PemisoRol__IdPer__31EC6D26" />
+        <AssociationConnector Association="SistemaModuloModel.FK__PemisoRol__IdRol__32E0915F" />
+        <AssociationConnector Association="SistemaModuloModel.FK__UsuarioSi__IdRol__15502E78" />
+        <AssociationConnector Association="SistemaModuloModel.FK_UsuarioSistema_Usuario" />
+        <EntityTypeShape EntityType="SistemaModuloModel.Menu" Width="1.5" PointX="4.25" PointY="12.375" />
+        <EntityTypeShape EntityType="SistemaModuloModel.Sistema" Width="1.5" PointX="7.25" PointY="10.125" />
+        <AssociationConnector Association="SistemaModuloModel.FK_Menu_Sistema" />
+        <AssociationConnector Association="SistemaModuloModel.FK__RolSistem__IdSis__0DAF0CB0" />
+        <EntityTypeShape EntityType="SistemaModuloModel.ItemMenu" Width="1.5" PointX="6.5" PointY="13.25" />
+        <AssociationConnector Association="SistemaModuloModel.FK__ItemMenu__IdMenu__22AA2996" />
+        <AssociationConnector Association="SistemaModuloModel.FK__Permiso__IdItemM__34C8D9D1" />
+        <EntityTypeShape EntityType="SistemaModuloModel.Persona" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SistemaModuloModel.Departamento" Width="1.5" PointX="8.375" PointY="7" />
+        <EntityTypeShape EntityType="SistemaModuloModel.Municipio" Width="1.5" PointX="10.625" PointY="6.875" />
+        <EntityTypeShape EntityType="SistemaModuloModel.Parametros" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="SistemaModuloModel.FK__Municipio__IdDep__0A9D95DB" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

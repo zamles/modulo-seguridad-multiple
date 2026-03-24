@@ -1,0 +1,795 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SistemaModuloModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="IdDepartamento" />
+          </Key>
+          <Property Name="IdDepartamento" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Municipio">
+          <Key>
+            <PropertyRef Name="IdMunicipio" />
+          </Key>
+          <Property Name="IdMunicipio" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="IdDepartamento" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+          </Key>
+          <Property Name="IdPersona" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PrimerNombre" Type="nvarchar" MaxLength="150" />
+          <Property Name="SegundoNombre" Type="nvarchar" MaxLength="150" />
+          <Property Name="PrimerApellido" Type="nvarchar" MaxLength="150" />
+          <Property Name="SegundoApellido" Type="nvarchar" MaxLength="150" />
+          <Property Name="Municipio" Type="nvarchar" MaxLength="50" />
+          <Property Name="Departamento" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sexo" Type="nvarchar" MaxLength="50" />
+          <Property Name="TipoIdentificacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="NumeroIdentificacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="50" />
+          <Property Name="Direccion" Type="nvarchar(max)" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="150" />
+          <Property Name="DocumentoIdentificacion" Type="varbinary(max)" />
+          <Property Name="RazonSocial" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="CreadoPor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemMenu">
+          <Key>
+            <PropertyRef Name="IdItemMenu" />
+          </Key>
+          <Property Name="IdItemMenu" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdMenu" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Detalle" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Enlace" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Peso" Type="int" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="IdMenu" />
+          </Key>
+          <Property Name="IdMenu" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdSistema" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fuente" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Peso" Type="int" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Parametros">
+          <Key>
+            <PropertyRef Name="IdParametro" />
+          </Key>
+          <Property Name="IdParametro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Valor" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TipoValor" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PemisoRolSistema">
+          <Key>
+            <PropertyRef Name="IdPemisoRolSistema" />
+          </Key>
+          <Property Name="IdPemisoRolSistema" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdPermiso" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdRolSistema" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Permiso">
+          <Key>
+            <PropertyRef Name="IdPermiso" />
+          </Key>
+          <Property Name="IdPermiso" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdItemMenu" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nivel" Type="nvarchar" MaxLength="50" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RolSistema">
+          <Key>
+            <PropertyRef Name="IdRolSistema" />
+          </Key>
+          <Property Name="IdRolSistema" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdSistema" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NombreRol" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sistema">
+          <Key>
+            <PropertyRef Name="IdSistema" />
+          </Key>
+          <Property Name="IdSistema" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NombreUsuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contrasena" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Razonsocial" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Identificacion" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="NoCarnet" Type="int" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="256" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsuarioSistema">
+          <Key>
+            <PropertyRef Name="IdUsuarioSistema" />
+          </Key>
+          <Property Name="IdUsuarioSistema" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdUsuario" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdRolSistema" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__ItemMenu__IdMenu__22AA2996">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="ItemMenu" Type="Self.ItemMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="IdMenu" />
+            </Principal>
+            <Dependent Role="ItemMenu">
+              <PropertyRef Name="IdMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Municipio__IdDep__0A9D95DB">
+          <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+          <End Role="Municipio" Type="Self.Municipio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="IdDepartamento" />
+            </Principal>
+            <Dependent Role="Municipio">
+              <PropertyRef Name="IdDepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PemisoRol__IdPer__32E0915F">
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="1" />
+          <End Role="PemisoRolSistema" Type="Self.PemisoRolSistema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permiso">
+              <PropertyRef Name="IdPermiso" />
+            </Principal>
+            <Dependent Role="PemisoRolSistema">
+              <PropertyRef Name="IdPermiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PemisoRol__IdRol__33D4B598">
+          <End Role="RolSistema" Type="Self.RolSistema" Multiplicity="1" />
+          <End Role="PemisoRolSistema" Type="Self.PemisoRolSistema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolSistema">
+              <PropertyRef Name="IdRolSistema" />
+            </Principal>
+            <Dependent Role="PemisoRolSistema">
+              <PropertyRef Name="IdRolSistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Permiso__IdItemM__34C8D9D1">
+          <End Role="ItemMenu" Type="Self.ItemMenu" Multiplicity="1" />
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemMenu">
+              <PropertyRef Name="IdItemMenu" />
+            </Principal>
+            <Dependent Role="Permiso">
+              <PropertyRef Name="IdItemMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RolSistem__IdSis__35BCFE0A">
+          <End Role="Sistema" Type="Self.Sistema" Multiplicity="1" />
+          <End Role="RolSistema" Type="Self.RolSistema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sistema">
+              <PropertyRef Name="IdSistema" />
+            </Principal>
+            <Dependent Role="RolSistema">
+              <PropertyRef Name="IdSistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsuarioSi__IdRol__36B12243">
+          <End Role="RolSistema" Type="Self.RolSistema" Multiplicity="1" />
+          <End Role="UsuarioSistema" Type="Self.UsuarioSistema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolSistema">
+              <PropertyRef Name="IdRolSistema" />
+            </Principal>
+            <Dependent Role="UsuarioSistema">
+              <PropertyRef Name="IdRolSistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu_Sistema">
+          <End Role="Sistema" Type="Self.Sistema" Multiplicity="1" />
+          <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sistema">
+              <PropertyRef Name="IdSistema" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="IdSistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioSistema_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UsuarioSistema" Type="Self.UsuarioSistema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="UsuarioSistema">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SistemaModuloModelStoreContainer">
+          <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="Catalogo" store:Type="Tables" />
+          <EntitySet Name="Municipio" EntityType="Self.Municipio" Schema="Catalogo" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="Registro" store:Type="Tables" />
+          <EntitySet Name="ItemMenu" EntityType="Self.ItemMenu" Schema="Seguridad" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="Seguridad" store:Type="Tables" />
+          <EntitySet Name="Parametros" EntityType="Self.Parametros" Schema="Seguridad" store:Type="Tables" />
+          <EntitySet Name="PemisoRolSistema" EntityType="Self.PemisoRolSistema" Schema="Seguridad" store:Type="Tables" />
+          <EntitySet Name="Permiso" EntityType="Self.Permiso" Schema="Seguridad" store:Type="Tables" />
+          <EntitySet Name="RolSistema" EntityType="Self.RolSistema" Schema="Seguridad" store:Type="Tables" />
+          <EntitySet Name="Sistema" EntityType="Self.Sistema" Schema="Seguridad" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="Seguridad" store:Type="Tables" />
+          <EntitySet Name="UsuarioSistema" EntityType="Self.UsuarioSistema" Schema="Seguridad" store:Type="Tables" />
+          <AssociationSet Name="FK__ItemMenu__IdMenu__22AA2996" Association="Self.FK__ItemMenu__IdMenu__22AA2996">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="ItemMenu" EntitySet="ItemMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Municipio__IdDep__0A9D95DB" Association="Self.FK__Municipio__IdDep__0A9D95DB">
+            <End Role="Departamento" EntitySet="Departamento" />
+            <End Role="Municipio" EntitySet="Municipio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PemisoRol__IdPer__32E0915F" Association="Self.FK__PemisoRol__IdPer__32E0915F">
+            <End Role="Permiso" EntitySet="Permiso" />
+            <End Role="PemisoRolSistema" EntitySet="PemisoRolSistema" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PemisoRol__IdRol__33D4B598" Association="Self.FK__PemisoRol__IdRol__33D4B598">
+            <End Role="RolSistema" EntitySet="RolSistema" />
+            <End Role="PemisoRolSistema" EntitySet="PemisoRolSistema" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Permiso__IdItemM__34C8D9D1" Association="Self.FK__Permiso__IdItemM__34C8D9D1">
+            <End Role="ItemMenu" EntitySet="ItemMenu" />
+            <End Role="Permiso" EntitySet="Permiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RolSistem__IdSis__35BCFE0A" Association="Self.FK__RolSistem__IdSis__35BCFE0A">
+            <End Role="Sistema" EntitySet="Sistema" />
+            <End Role="RolSistema" EntitySet="RolSistema" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsuarioSi__IdRol__36B12243" Association="Self.FK__UsuarioSi__IdRol__36B12243">
+            <End Role="RolSistema" EntitySet="RolSistema" />
+            <End Role="UsuarioSistema" EntitySet="UsuarioSistema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu_Sistema" Association="Self.FK_Menu_Sistema">
+            <End Role="Sistema" EntitySet="Sistema" />
+            <End Role="Menu" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioSistema_Usuario" Association="Self.FK_UsuarioSistema_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioSistema" EntitySet="UsuarioSistema" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SistemaModuloModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Permiso">
+          <Key>
+            <PropertyRef Name="IdPermiso" />
+          </Key>
+          <Property Name="IdPermiso" Type="Guid" Nullable="false" />
+          <Property Name="IdItemMenu" Type="Guid" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nivel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PemisoRolSistema" Relationship="SistemaModuloModel.FK__PemisoRol__IdPer__31EC6D26" FromRole="Permiso" ToRole="PemisoRolSistema" />
+          <NavigationProperty Name="ItemMenu" Relationship="SistemaModuloModel.FK__Permiso__IdItemM__34C8D9D1" FromRole="Permiso" ToRole="ItemMenu" />
+        </EntityType>
+        <EntityContainer Name="SistemaModuloEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Permiso" EntityType="Self.Permiso" />
+          <EntitySet Name="PemisoRolSistema" EntityType="SistemaModuloModel.PemisoRolSistema" />
+          <EntitySet Name="RolSistema" EntityType="SistemaModuloModel.RolSistema" />
+          <EntitySet Name="Usuario" EntityType="SistemaModuloModel.Usuario" />
+          <EntitySet Name="UsuarioSistema" EntityType="SistemaModuloModel.UsuarioSistema" />
+          <AssociationSet Name="FK__PemisoRol__IdPer__31EC6D26" Association="SistemaModuloModel.FK__PemisoRol__IdPer__31EC6D26">
+            <End Role="Permiso" EntitySet="Permiso" />
+            <End Role="PemisoRolSistema" EntitySet="PemisoRolSistema" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PemisoRol__IdRol__32E0915F" Association="SistemaModuloModel.FK__PemisoRol__IdRol__32E0915F">
+            <End Role="RolSistema" EntitySet="RolSistema" />
+            <End Role="PemisoRolSistema" EntitySet="PemisoRolSistema" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsuarioSi__IdRol__15502E78" Association="SistemaModuloModel.FK__UsuarioSi__IdRol__15502E78">
+            <End Role="RolSistema" EntitySet="RolSistema" />
+            <End Role="UsuarioSistema" EntitySet="UsuarioSistema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioSistema_Usuario" Association="SistemaModuloModel.FK_UsuarioSistema_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioSistema" EntitySet="UsuarioSistema" />
+          </AssociationSet>
+          <EntitySet Name="Menu" EntityType="SistemaModuloModel.Menu" />
+          <EntitySet Name="Sistema" EntityType="SistemaModuloModel.Sistema" />
+          <AssociationSet Name="FK_Menu_Sistema" Association="SistemaModuloModel.FK_Menu_Sistema">
+            <End Role="Sistema" EntitySet="Sistema" />
+            <End Role="Menu" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RolSistem__IdSis__0DAF0CB0" Association="SistemaModuloModel.FK__RolSistem__IdSis__0DAF0CB0">
+            <End Role="Sistema" EntitySet="Sistema" />
+            <End Role="RolSistema" EntitySet="RolSistema" />
+          </AssociationSet>
+          <EntitySet Name="ItemMenu" EntityType="SistemaModuloModel.ItemMenu" />
+          <AssociationSet Name="FK__ItemMenu__IdMenu__22AA2996" Association="SistemaModuloModel.FK__ItemMenu__IdMenu__22AA2996">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="ItemMenu" EntitySet="ItemMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Permiso__IdItemM__34C8D9D1" Association="SistemaModuloModel.FK__Permiso__IdItemM__34C8D9D1">
+            <End Role="ItemMenu" EntitySet="ItemMenu" />
+            <End Role="Permiso" EntitySet="Permiso" />
+          </AssociationSet>
+          <EntitySet Name="Persona" EntityType="SistemaModuloModel.Persona" />
+          <EntitySet Name="Departamento" EntityType="SistemaModuloModel.Departamento" />
+          <EntitySet Name="Municipio" EntityType="SistemaModuloModel.Municipio" />
+          <EntitySet Name="Parametros" EntityType="SistemaModuloModel.Parametros" />
+          <AssociationSet Name="FK__Municipio__IdDep__0A9D95DB" Association="SistemaModuloModel.FK__Municipio__IdDep__0A9D95DB">
+            <End Role="Departamento" EntitySet="Departamento" />
+            <End Role="Municipio" EntitySet="Municipio" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="PemisoRolSistema">
+          <Key>
+            <PropertyRef Name="IdPemisoRolSistema" />
+          </Key>
+          <Property Name="IdPemisoRolSistema" Type="Guid" Nullable="false" />
+          <Property Name="IdPermiso" Type="Guid" Nullable="false" />
+          <Property Name="IdRolSistema" Type="Guid" Nullable="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Permiso" Relationship="SistemaModuloModel.FK__PemisoRol__IdPer__31EC6D26" FromRole="PemisoRolSistema" ToRole="Permiso" />
+          <NavigationProperty Name="RolSistema" Relationship="SistemaModuloModel.FK__PemisoRol__IdRol__32E0915F" FromRole="PemisoRolSistema" ToRole="RolSistema" />
+        </EntityType>
+        <EntityType Name="RolSistema">
+          <Key>
+            <PropertyRef Name="IdRolSistema" />
+          </Key>
+          <Property Name="IdRolSistema" Type="Guid" Nullable="false" />
+          <Property Name="IdSistema" Type="Guid" Nullable="false" />
+          <Property Name="NombreRol" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PemisoRolSistema" Relationship="SistemaModuloModel.FK__PemisoRol__IdRol__32E0915F" FromRole="RolSistema" ToRole="PemisoRolSistema" />
+          <NavigationProperty Name="UsuarioSistema" Relationship="SistemaModuloModel.FK__UsuarioSi__IdRol__15502E78" FromRole="RolSistema" ToRole="UsuarioSistema" />
+          <NavigationProperty Name="Sistema" Relationship="SistemaModuloModel.FK__RolSistem__IdSis__0DAF0CB0" FromRole="RolSistema" ToRole="Sistema" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Guid" Nullable="false" />
+          <Property Name="NombreUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Contrasena" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Razonsocial" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="NoCarnet" Type="Int32" />
+          <Property Name="Correo" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UsuarioSistema" Relationship="SistemaModuloModel.FK_UsuarioSistema_Usuario" FromRole="Usuario" ToRole="UsuarioSistema" />
+        </EntityType>
+        <EntityType Name="UsuarioSistema">
+          <Key>
+            <PropertyRef Name="IdUsuarioSistema" />
+          </Key>
+          <Property Name="IdUsuarioSistema" Type="Guid" Nullable="false" />
+          <Property Name="IdUsuario" Type="Guid" Nullable="false" />
+          <Property Name="IdRolSistema" Type="Guid" Nullable="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="RolSistema" Relationship="SistemaModuloModel.FK__UsuarioSi__IdRol__15502E78" FromRole="UsuarioSistema" ToRole="RolSistema" />
+          <NavigationProperty Name="Usuario" Relationship="SistemaModuloModel.FK_UsuarioSistema_Usuario" FromRole="UsuarioSistema" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK__PemisoRol__IdPer__31EC6D26">
+          <End Type="SistemaModuloModel.Permiso" Role="Permiso" Multiplicity="1" />
+          <End Type="SistemaModuloModel.PemisoRolSistema" Role="PemisoRolSistema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permiso">
+              <PropertyRef Name="IdPermiso" />
+            </Principal>
+            <Dependent Role="PemisoRolSistema">
+              <PropertyRef Name="IdPermiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PemisoRol__IdRol__32E0915F">
+          <End Type="SistemaModuloModel.RolSistema" Role="RolSistema" Multiplicity="1" />
+          <End Type="SistemaModuloModel.PemisoRolSistema" Role="PemisoRolSistema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolSistema">
+              <PropertyRef Name="IdRolSistema" />
+            </Principal>
+            <Dependent Role="PemisoRolSistema">
+              <PropertyRef Name="IdRolSistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsuarioSi__IdRol__15502E78">
+          <End Type="SistemaModuloModel.RolSistema" Role="RolSistema" Multiplicity="1" />
+          <End Type="SistemaModuloModel.UsuarioSistema" Role="UsuarioSistema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolSistema">
+              <PropertyRef Name="IdRolSistema" />
+            </Principal>
+            <Dependent Role="UsuarioSistema">
+              <PropertyRef Name="IdRolSistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioSistema_Usuario">
+          <End Type="SistemaModuloModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="SistemaModuloModel.UsuarioSistema" Role="UsuarioSistema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="UsuarioSistema">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="IdMenu" />
+          </Key>
+          <Property Name="IdMenu" Type="Guid" Nullable="false" />
+          <Property Name="IdSistema" Type="Guid" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fuente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Peso" Type="Int32" Nullable="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Sistema" Relationship="SistemaModuloModel.FK_Menu_Sistema" FromRole="Menu" ToRole="Sistema" />
+          <NavigationProperty Name="ItemMenu" Relationship="SistemaModuloModel.FK__ItemMenu__IdMenu__22AA2996" FromRole="Menu" ToRole="ItemMenu" />
+        </EntityType>
+        <EntityType Name="Sistema">
+          <Key>
+            <PropertyRef Name="IdSistema" />
+          </Key>
+          <Property Name="IdSistema" Type="Guid" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Menu" Relationship="SistemaModuloModel.FK_Menu_Sistema" FromRole="Sistema" ToRole="Menu" />
+          <NavigationProperty Name="RolSistema" Relationship="SistemaModuloModel.FK__RolSistem__IdSis__0DAF0CB0" FromRole="Sistema" ToRole="RolSistema" />
+        </EntityType>
+        <Association Name="FK_Menu_Sistema">
+          <End Type="SistemaModuloModel.Sistema" Role="Sistema" Multiplicity="1" />
+          <End Type="SistemaModuloModel.Menu" Role="Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sistema">
+              <PropertyRef Name="IdSistema" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="IdSistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RolSistem__IdSis__0DAF0CB0">
+          <End Type="SistemaModuloModel.Sistema" Role="Sistema" Multiplicity="1" />
+          <End Type="SistemaModuloModel.RolSistema" Role="RolSistema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sistema">
+              <PropertyRef Name="IdSistema" />
+            </Principal>
+            <Dependent Role="RolSistema">
+              <PropertyRef Name="IdSistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ItemMenu">
+          <Key>
+            <PropertyRef Name="IdItemMenu" />
+          </Key>
+          <Property Name="IdItemMenu" Type="Guid" Nullable="false" />
+          <Property Name="IdMenu" Type="Guid" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Detalle" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Enlace" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Peso" Type="Int32" Nullable="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Menu" Relationship="SistemaModuloModel.FK__ItemMenu__IdMenu__22AA2996" FromRole="ItemMenu" ToRole="Menu" />
+          <NavigationProperty Name="Permiso" Relationship="SistemaModuloModel.FK__Permiso__IdItemM__34C8D9D1" FromRole="ItemMenu" ToRole="Permiso" />
+        </EntityType>
+        <Association Name="FK__ItemMenu__IdMenu__22AA2996">
+          <End Type="SistemaModuloModel.Menu" Role="Menu" Multiplicity="1" />
+          <End Type="SistemaModuloModel.ItemMenu" Role="ItemMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="IdMenu" />
+            </Principal>
+            <Dependent Role="ItemMenu">
+              <PropertyRef Name="IdMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Permiso__IdItemM__34C8D9D1">
+          <End Type="SistemaModuloModel.ItemMenu" Role="ItemMenu" Multiplicity="1" />
+          <End Type="SistemaModuloModel.Permiso" Role="Permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemMenu">
+              <PropertyRef Name="IdItemMenu" />
+            </Principal>
+            <Dependent Role="Permiso">
+              <PropertyRef Name="IdItemMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+          </Key>
+          <Property Name="IdPersona" Type="Guid" Nullable="false" />
+          <Property Name="PrimerNombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="SegundoNombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PrimerApellido" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Municipio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Departamento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sexo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TipoIdentificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroIdentificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentoIdentificacion" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="RazonSocial" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="IdDepartamento" />
+          </Key>
+          <Property Name="IdDepartamento" Type="Guid" Nullable="false" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Municipio" Relationship="SistemaModuloModel.FK__Municipio__IdDep__0A9D95DB" FromRole="Departamento" ToRole="Municipio" />
+        </EntityType>
+        <EntityType Name="Municipio">
+          <Key>
+            <PropertyRef Name="IdMunicipio" />
+          </Key>
+          <Property Name="IdMunicipio" Type="Guid" Nullable="false" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="IdDepartamento" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Departamento" Relationship="SistemaModuloModel.FK__Municipio__IdDep__0A9D95DB" FromRole="Municipio" ToRole="Departamento" />
+        </EntityType>
+        <EntityType Name="Parametros">
+          <Key>
+            <PropertyRef Name="IdParametro" />
+          </Key>
+          <Property Name="IdParametro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Valor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TipoValor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__Municipio__IdDep__0A9D95DB">
+          <End Type="SistemaModuloModel.Departamento" Role="Departamento" Multiplicity="1" />
+          <End Type="SistemaModuloModel.Municipio" Role="Municipio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="IdDepartamento" />
+            </Principal>
+            <Dependent Role="Municipio">
+              <PropertyRef Name="IdDepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SistemaModuloModelStoreContainer" CdmEntityContainer="SistemaModuloEntities">
+          <EntitySetMapping Name="Permiso">
+            <EntityTypeMapping TypeName="SistemaModuloModel.Permiso">
+              <MappingFragment StoreEntitySet="Permiso">
+                <ScalarProperty Name="IdPermiso" ColumnName="IdPermiso" />
+                <ScalarProperty Name="IdItemMenu" ColumnName="IdItemMenu" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PemisoRolSistema">
+            <EntityTypeMapping TypeName="SistemaModuloModel.PemisoRolSistema">
+              <MappingFragment StoreEntitySet="PemisoRolSistema">
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="IdRolSistema" ColumnName="IdRolSistema" />
+                <ScalarProperty Name="IdPermiso" ColumnName="IdPermiso" />
+                <ScalarProperty Name="IdPemisoRolSistema" ColumnName="IdPemisoRolSistema" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolSistema">
+            <EntityTypeMapping TypeName="SistemaModuloModel.RolSistema">
+              <MappingFragment StoreEntitySet="RolSistema">
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
+                <ScalarProperty Name="IdSistema" ColumnName="IdSistema" />
+                <ScalarProperty Name="IdRolSistema" ColumnName="IdRolSistema" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="SistemaModuloModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="NoCarnet" ColumnName="NoCarnet" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="Razonsocial" ColumnName="Razonsocial" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioSistema">
+            <EntityTypeMapping TypeName="SistemaModuloModel.UsuarioSistema">
+              <MappingFragment StoreEntitySet="UsuarioSistema">
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="IdRolSistema" ColumnName="IdRolSistema" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdUsuarioSistema" ColumnName="IdUsuarioSistema" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menu">
+            <EntityTypeMapping TypeName="SistemaModuloModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="Fuente" ColumnName="Fuente" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdSistema" ColumnName="IdSistema" />
+                <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sistema">
+            <EntityTypeMapping TypeName="SistemaModuloModel.Sistema">
+              <MappingFragment StoreEntitySet="Sistema">
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdSistema" ColumnName="IdSistema" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemMenu">
+            <EntityTypeMapping TypeName="SistemaModuloModel.ItemMenu">
+              <MappingFragment StoreEntitySet="ItemMenu">
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="Enlace" ColumnName="Enlace" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+                <ScalarProperty Name="IdItemMenu" ColumnName="IdItemMenu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="SistemaModuloModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="DocumentoIdentificacion" ColumnName="DocumentoIdentificacion" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="TipoIdentificacion" ColumnName="TipoIdentificacion" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoNombre" ColumnName="SegundoNombre" />
+                <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departamento">
+            <EntityTypeMapping TypeName="SistemaModuloModel.Departamento">
+              <MappingFragment StoreEntitySet="Departamento">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="IdDepartamento" ColumnName="IdDepartamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Municipio">
+            <EntityTypeMapping TypeName="SistemaModuloModel.Municipio">
+              <MappingFragment StoreEntitySet="Municipio">
+                <ScalarProperty Name="IdDepartamento" ColumnName="IdDepartamento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="IdMunicipio" ColumnName="IdMunicipio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parametros">
+            <EntityTypeMapping TypeName="SistemaModuloModel.Parametros">
+              <MappingFragment StoreEntitySet="Parametros">
+                <ScalarProperty Name="TipoValor" ColumnName="TipoValor" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdParametro" ColumnName="IdParametro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,449 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Plantilla.master.cs" Inherits="Plantilla" %>
+
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Modulo de Nomina</title>
+
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+  <link rel="icon" href="<%=ResolveClientUrl("theme/img/theme/icono-negro.png")%>">
+
+   <!--=====================================
+  PLUGINS DE CSS
+  ======================================-->
+
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="<%=ResolveClientUrl("theme/bower_components/bootstrap/dist/css/bootstrap.min.css")%>">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<%=ResolveClientUrl("theme/bower_components/font-awesome/css/font-awesome.min.css")%>">
+
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="<%=ResolveClientUrl("theme/bower_components/Ionicons/css/ionicons.min.css")%>">
+
+	  
+	  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="<%=ResolveClientUrl("theme/plugins/iCheck/all.css")%>">
+	 <!-- Select2 -->
+  <link rel="stylesheet" href="<%=ResolveClientUrl("theme/bower_components/select2/dist/css/select2.min.css")%>">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<%=ResolveClientUrl("theme/dist/css/AdminLTE.css")%>">
+  
+  <!-- AdminLTE Skins -->
+  <link rel="stylesheet" href="<%=ResolveClientUrl("theme/dist/css/skins/skin-custom2.css")%>">
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+   <!-- DataTables -->
+  <link rel="stylesheet" href="<%=ResolveClientUrl("theme/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css")%>">
+  <link rel="stylesheet" href="<%=ResolveClientUrl("theme/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css")%>">
+
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="<%=ResolveClientUrl("theme/bower_components/bootstrap-daterangepicker/daterangepicker.css")%>">
+
+
+  <!--=====================================
+  PLUGINS DE JAVASCRIPT
+  ======================================-->
+
+  <!-- jQuery 3 -->
+  <script src="<%=ResolveClientUrl("theme/bower_components/jquery/dist/jquery.min.js")%>"></script>
+  
+  <!-- Bootstrap 3.3.7 -->
+  <script src="<%=ResolveClientUrl("theme/bower_components/bootstrap/dist/js/bootstrap.min.js")%>"></script>
+	<!-- Select2 -->
+<script src="<%=ResolveClientUrl("theme/bower_components/select2/dist/js/select2.full.min.js")%>"></script>
+  <!-- FastClick -->
+  <script src="<%=ResolveClientUrl("theme/bower_components/fastclick/lib/fastclick.js")%>"></script>
+  
+
+
+  <!-- AdminLTE App -->
+  <script src="<%=ResolveClientUrl("theme/dist/js/adminlte.min.js")%>"></script>
+
+  <!-- DataTables -->
+  <script src="<%=ResolveClientUrl("theme/bower_components/datatables.net/js/jquery.dataTables.min.js")%>"></script>
+  <script src="<%=ResolveClientUrl("theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js")%>"></script>
+  <script src="<%=ResolveClientUrl("theme/bower_components/datatables.net-bs/js/dataTables.responsive.min.js")%>"></script>
+  <script src="<%=ResolveClientUrl("theme/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js")%>"></script>
+
+  <!-- SweetAlert 2 -->
+  <script src="<%=ResolveClientUrl("theme/plugins/sweetalert2/sweetalert2.all.js")%>"></script>
+  <!-- By default SweetAlert2 doesn't support IE. To enable IE 11 support, include Promise polyfill:-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+<!-- daterange picker -->
+  <script src="<%=ResolveClientUrl("theme/bower_components/moment/min/moment.min.js")%>"></script>
+  <script src="<%=ResolveClientUrl("theme/bower_components/bootstrap-daterangepicker/daterangepicker.js")%>"></script>
+
+     <!-- ckeditor -->
+    <script src="<%=ResolveClientUrl("theme/bower_components/ckeditor/ckeditor.js") %>"></script>
+	 
+
+	<style>
+        .contenido_h4 {
+            color:#3c8dbc;
+            font-weight:bold;
+        }
+
+		.numberCircle {
+			border-radius: 50%;
+			width: 36px;
+			height: 36px;
+			background: #fff;
+			border: 2px solid #3c8dbc;
+			color: #3c8dbc;
+			text-align: center;
+			font-size: 2.5rem;
+			display: inline-block;
+		}
+
+        span.select2{
+            width:100% !important;
+        }
+     
+    </style>
+
+<asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<!--=====================================
+CUERPO DOCUMENTO
+======================================-->
+<!-- sidebar-collapse -->
+
+<body class="hold-transition skin-red  sidebar-mini">
+  <form id="form" runat="server">
+      <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+      <asp:HiddenField ID="hdfIdUsuario" runat="server" />
+   <div class="wrapper">
+
+    <!--=============================================
+    CABEZOTE
+    =============================================-->
+
+    <header class="main-header">
+ 	
+	<!--=====================================
+	LOGOTIPO
+	======================================-->
+	<a href="default.aspx" class="logo">
+		
+		<!-- logo mini -->
+		<span class="logo-mini">
+			
+			<img src="<%=ResolveClientUrl("theme/img/plantilla/logomini.png")%>" class="img-responsive" style="padding:10px">
+
+		</span>
+
+		<!-- logo normal -->
+
+		<span class="logo-lg">
+			
+			<%--<img src="<%=ResolveClientUrl("theme/img/plantilla/logomificw.png")%>" class="img-responsive" style="width:182px; height:65px; padding:3px 0px">--%>
+
+            [ Seguridad ]
+
+		</span>
+
+	</a>
+
+	<!--=====================================
+	BARRA DE NAVEGACIÓN
+	======================================-->
+	<nav class="navbar navbar-static-top" role="navigation">
+		
+		<!-- Botón de navegación -->
+
+	 	<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        	
+        	<span class="sr-only">Toggle navigation</span>
+      	
+      	</a>
+
+		<!-- perfil de usuario -->
+
+		<div class="navbar-custom-menu">
+				
+			<ul class="nav navbar-nav">
+				
+				<li class="dropdown user user-menu">
+					
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+				<img src="<%=ResolveClientUrl("theme/img/usuarios/default/user.png")%>" class="user-image">
+
+											
+						<span class="hidden-xs">
+                            <asp:Label ID="LabelNombreUsuario" runat="server" Text="NombreUsuario"></asp:Label>							
+						</span>
+
+					</a>
+
+					<!-- Dropdown-toggle -->
+
+					<ul class="dropdown-menu">
+						
+						<li class="user-body">
+							
+							<div class="pull-right">
+																
+								<asp:Button ID="btnSalir" runat="server" Text="Salir" OnClick="btnSalir_Click"  CssClass="btn btn-default btn-flat" />
+							</div>
+
+						</li>
+
+					</ul>
+
+				</li>
+
+			</ul>
+
+		</div>
+
+	</nav>
+
+ </header>
+
+    <!--=============================================
+    MENU
+    =============================================-->
+
+    <aside class="main-sidebar">
+
+	 <section class="sidebar">
+
+		<ul class="sidebar-menu">
+
+              <%--<li>
+                <a href="/Default.aspx">
+                    <i class="fa fa-tachometer"></i><span>Escritorio</span>
+                </a>
+            </li>--%>
+
+              <asp:Repeater ID="RptrMenu" runat="server" OnItemDataBound="RptrMenu_ItemDataBound">
+                  <HeaderTemplate></HeaderTemplate>
+                          <ItemTemplate>
+                                <li class="treeview">
+                                    <a href="<%# DataBinder.Eval(Container.DataItem, "IdMenu")  %>">
+                                        <i class="<%# DataBinder.Eval(Container.DataItem, "Fuente")  %>"></i><span><%# DataBinder.Eval(Container.DataItem, "Nombre") %></span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <!--Menu item -->
+                                    <ul class="treeview-menu">
+                                    <asp:Repeater ID="RptrMenuItem" runat="server">
+                                        <HeaderTemplate></HeaderTemplate>
+                                        <ItemTemplate>                                            
+                                                <li>
+                                                    <a runat="server" href='<%# Eval("Enlace") %>'><i class="fa fa-circle-o"></i>
+                                                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label></a>
+                                                </li>                                           
+                                        </ItemTemplate>
+                                        <FooterTemplate></FooterTemplate>
+                                    </asp:Repeater>
+                                         </ul>
+                                </li>                            
+
+                            </ItemTemplate>
+                  <FooterTemplate></FooterTemplate>
+                    </asp:Repeater>
+
+
+
+             <li>
+                <a href="/">
+                    <i class="fa fa-question-circle"></i><span>Ayuda</span>
+                </a>
+            </li>
+
+
+
+
+          
+
+
+
+			
+
+			
+
+			
+
+
+
+		</ul>
+
+	 </section>
+
+</aside>
+
+    <!--=============================================
+    CONTENIDO
+    =============================================-->
+
+    <div class="content-wrapper">
+
+        <section class="content-header">
+                     
+            <ol class="breadcrumb">
+
+                <li><a href="/default.aspx"><i class="fa fa-dashboard"></i>Inicio</a></li>
+
+                <li class="active">Tablero</li>
+
+            </ol>
+
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <asp:ContentPlaceHolder ID="contenido" runat="server">
+            </asp:ContentPlaceHolder>
+        </section>
+           <!-- /.content -->
+       </div>
+<!-- /.content-wrapper -->
+
+    
+
+    <!--=============================================
+    FOOTER
+    =============================================-->
+
+   <footer class="main-footer">
+	
+	<strong>GDoCo: <% Response.Write(DateTime.Now.Year.ToString());; %> </strong>
+
+</footer>
+
+    </div>
+
+	  </form>
+
+</body>
+	
+	 <script>
+
+         $(function () {
+
+             $('.datepicker').daterangepicker({
+                 singleDatePicker: true,
+                 showDropdowns: true,
+                 locale: {
+                     format: 'DD/MM/YYYY'
+                 }
+             });
+
+             $('.tblListadoSimple').DataTable({
+                 "language": {
+
+                     "sProcessing": "Procesando...",
+                     "sLengthMenu": "Mostrar _MENU_ registros",
+                     "sZeroRecords": "No se encontraron resultados",
+                     "sEmptyTable": "Ningún dato disponible en esta tabla",
+                     "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+                     "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                     "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                     "sInfoPostFix": "",
+                     "sSearch": "Buscar:",
+                     "sUrl": "",
+                     "sInfoThousands": ",",
+                     "sLoadingRecords": "Cargando...",
+                     "oPaginate": {
+                         "sFirst": "Primero",
+                         "sLast": "Último",
+                         "sNext": "Siguiente",
+                         "sPrevious": "Anterior"
+                     },
+                     "oAria": {
+                         "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                         "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                     }
+
+                 }
+             });
+
+             $(".tablas").DataTable({
+                 "order": [
+                     [0, "desc"]
+                 ],
+                 "language": {
+
+                     "sProcessing": "Procesando...",
+                     "sLengthMenu": "Mostrar _MENU_ registros",
+                     "sZeroRecords": "No se encontraron resultados",
+                     "sEmptyTable": "Ningún dato disponible en esta tabla",
+                     "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+                     "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                     "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                     "sInfoPostFix": "",
+                     "sSearch": "Buscar:",
+                     "sUrl": "",
+                     "sInfoThousands": ",",
+                     "sLoadingRecords": "Cargando...",
+                     "oPaginate": {
+                         "sFirst": "Primero",
+                         "sLast": "Último",
+                         "sNext": "Siguiente",
+                         "sPrevious": "Anterior"
+                     },
+                     "oAria": {
+                         "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                         "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                     }
+
+                 }
+
+             });
+
+
+             $(".dynamic-table").prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
+                 "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Mostrar Todo"]],
+                 "pageLength": 10,
+                 "order": [
+                     [0, "asc"]
+                 ],
+
+                 language: {
+                     "decimal": "",
+                     "emptyTable": "No hay información",
+                     "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                     "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                     "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                     "infoPostFix": "",
+                     "thousands": ",",
+                     "lengthMenu": "Mostrar _MENU_ Entradas",
+                     "loadingRecords": "Cargando...",
+                     "processing": "Procesando...",
+                     "search": "Buscar:",
+                     "zeroRecords": "Sin resultados encontrados",
+                     "paginate": {
+                         "first": "Primero",
+                         "last": "Ultimo",
+                         "next": "Siguiente",
+                         "previous": "Anterior"
+                     }
+                 }
+
+             }
+
+             );
+
+         });
+     </script>
+
+     <script src="<%=ResolveClientUrl("theme/js/plantilla.js")%>"></script>
+    <script src="<%=ResolveClientUrl("main.js") %>"></script>
+</html>
+
